@@ -1,0 +1,649 @@
+/* ============================================
+   components.css — 원본 컴포넌트 바닐라 이식
+   ============================================ */
+
+/* --- layout --- */
+.container {
+  width: min(100% - 2.5rem, 68rem);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-20);
+  border-top: 1px solid var(--border);
+}
+
+.section__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-bottom: var(--space-2);
+}
+
+.section__title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-3);
+}
+
+.section__lede {
+  color: var(--muted-foreground);
+  max-width: 44rem;
+  margin-bottom: var(--space-8);
+}
+
+/* --- 스크롤 진행률 바 (심화 요구사항) --- */
+.progress {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: 2px;
+  background: var(--blue-3);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  z-index: 60;
+}
+
+/* --- topbar --- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.5rem;
+  background: color-mix(in oklab, var(--background) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar__brand {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* --- 다크모드 토글 --- */
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  transition: background 0.15s ease;
+}
+.theme-toggle:hover {
+  background: var(--accent);
+}
+.theme-toggle .icon-moon {
+  display: none;
+}
+.dark .theme-toggle .icon-sun {
+  display: none;
+}
+.dark .theme-toggle .icon-moon {
+  display: block;
+}
+
+/* --- hero --- */
+.hero {
+  padding-block: clamp(4rem, 12vh, 8rem) var(--space-20);
+}
+
+.hero__title {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+}
+
+.hero__sub {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  color: var(--muted-foreground);
+  max-width: 38rem;
+}
+
+/* ============================================
+   FilterChips — 원본 FilterChips.tsx 이식
+   선택: bg primary / 비선택: bg card + border
+   ============================================ */
+.chips {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+  padding-bottom: var(--space-1);
+}
+.chips::-webkit-scrollbar {
+  display: none;
+}
+.chips.is-dragging {
+  cursor: grabbing;
+}
+
+.chip {
+  flex-shrink: 0;
+  padding: 0.375rem var(--space-3);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  background: var(--card);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.chip:hover {
+  background: var(--accent);
+}
+.chip[aria-pressed='true'] {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: transparent;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.filters__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.filters__label {
+  flex-shrink: 0;
+  width: 3.5rem;
+  font-size: 0.6875rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+}
+
+/* ============================================
+   Badge — 시점 태그
+   ============================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+.badge--now {
+  background: var(--tag-now-bg);
+  color: var(--tag-now-fg);
+}
+.badge--soon {
+  background: var(--tag-soon-bg);
+  color: var(--tag-soon-fg);
+}
+.badge--later {
+  background: var(--tag-later-bg);
+  color: var(--tag-later-fg);
+}
+
+/* ============================================
+   Card — 원본 PostCard 골격
+   ============================================ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17.5rem, 1fr));
+  gap: var(--space-4);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  text-align: left;
+  background: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.card:hover {
+  border-color: var(--ring);
+  transform: translateY(-2px);
+}
+
+.card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.card__type {
+  font-size: 0.6875rem;
+  font-family: var(--font-mono);
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.card__title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.card__author {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+
+.card__takeaway {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-2);
+  margin-top: auto;
+}
+
+/* 필터 전환 애니메이션 */
+.card {
+  animation: card-in 0.28s ease backwards;
+}
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.empty {
+  padding: var(--space-12);
+  text-align: center;
+  color: var(--muted-foreground);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+}
+
+/* ============================================
+   Modal — 원본 LegalModal 골격
+   ============================================ */
+.modal {
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: 32rem;
+  width: calc(100% - 2rem);
+}
+.modal::backdrop {
+  background: oklch(0 0 0 / 45%);
+  backdrop-filter: blur(2px);
+}
+
+.modal__panel {
+  background: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+}
+
+.modal__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.modal__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.modal__close {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  color: var(--muted-foreground);
+}
+.modal__close:hover {
+  background: var(--accent);
+}
+
+.modal__row {
+  padding-block: var(--space-3);
+  border-top: 1px solid var(--border);
+}
+
+.modal__key {
+  font-size: 0.6875rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+  margin-bottom: var(--space-1);
+}
+
+.modal__val {
+  font-size: 0.875rem;
+}
+
+.modal__link {
+  display: inline-block;
+  margin-top: var(--space-4);
+  padding: 0.5rem var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* --- 모바일 --- */
+@media (max-width: 640px) {
+  .section {
+    padding-block: var(--space-12);
+  }
+  .filters__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  .filters__label {
+    width: auto;
+  }
+}
+
+/* ============================================
+   Request-Flow 다이어그램 — 이 페이지의 signature
+   요청이 위→아래로 흐르는 파이프라인.
+   노드 클릭 = Resources 필터.
+   세로 흐름이라 모바일에서 그대로 접힙니다.
+   ============================================ */
+.flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.flow__node {
+  position: relative;
+  width: min(100%, 22rem);
+  padding: var(--space-3) var(--space-4);
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+.flow__node:hover {
+  border-color: var(--ring);
+  transform: translateY(-1px);
+}
+.flow__node[aria-pressed='true'] {
+  background: var(--primary);
+  border-color: transparent;
+}
+.flow__node[aria-pressed='true'] .flow__name,
+.flow__node[aria-pressed='true'] .flow__desc {
+  color: var(--primary-foreground);
+}
+
+.flow__name {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.02em;
+}
+.flow__desc {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  margin-top: 2px;
+}
+
+/* 노드 사이를 잇는 세로선 + 화살표 */
+.flow__link {
+  width: 1px;
+  height: var(--space-6);
+  background: var(--border);
+  position: relative;
+}
+.flow__link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 5px;
+  height: 5px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transform: translate(-50%, 2px) rotate(45deg);
+}
+
+.flow__reset {
+  margin-top: var(--space-6);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--muted-foreground);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.flow__reset[hidden] {
+  display: none;
+}
+
+/* ============================================
+   Traps
+   ============================================ */
+.traps {
+  display: grid;
+  gap: var(--space-3);
+}
+.trap {
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--destructive);
+  border-radius: var(--radius-md);
+  background: var(--card);
+}
+.trap__title {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  margin-bottom: var(--space-1);
+}
+.trap__detail {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.footer {
+  padding-block: var(--space-12) var(--space-20);
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.8125rem;
+}
+.footer__note {
+  margin-top: var(--space-1);
+  opacity: 0.7;
+}
+
+/* ============================================
+   Advice — 번호는 실제 순서 제안이라 살림
+   ============================================ */
+.advice {
+  display: grid;
+  gap: var(--space-4);
+}
+.advice__item {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+}
+.advice__num {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--blue-3);
+  line-height: 1.4;
+}
+.advice__title {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  margin-bottom: var(--space-1);
+}
+.advice__detail {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+
+/* ============================================
+   Feedback — 폼 + 좌우 스크롤 카드
+   ============================================ */
+.fb-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  margin-bottom: var(--space-6);
+}
+.fb-form__name,
+.fb-form__text {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font: inherit;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  resize: none;
+}
+.fb-form__name::placeholder,
+.fb-form__text::placeholder {
+  color: var(--muted-foreground);
+}
+.fb-form__name:focus-visible,
+.fb-form__text:focus-visible {
+  outline: none;
+  border-color: var(--ring);
+}
+.fb-form__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fb-form__count {
+  font-size: 0.6875rem;
+  font-family: var(--font-mono);
+  color: var(--muted-foreground);
+}
+.fb-form__submit {
+  padding: var(--space-2) var(--space-6);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-radius: var(--radius-md);
+  transition: opacity 0.15s ease;
+}
+.fb-form__submit:hover {
+  opacity: 0.88;
+}
+.fb-form__submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* 좌우 스크롤 트랙 — 칩과 동일한 드래그 감성 */
+.fb-track {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+  padding-bottom: var(--space-2);
+  scroll-snap-type: x proximity;
+}
+.fb-track::-webkit-scrollbar {
+  display: none;
+}
+.fb-track.is-dragging {
+  cursor: grabbing;
+}
+.fb-track__empty {
+  padding: var(--space-8);
+  width: 100%;
+  text-align: center;
+  color: var(--muted-foreground);
+  font-size: 0.8125rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.fb-card {
+  flex: 0 0 min(20rem, 78%);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  animation: card-in 0.28s ease backwards;
+}
+.fb-card__text {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.fb-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border);
+  font-size: 0.6875rem;
+  font-family: var(--font-mono);
+  color: var(--muted-foreground);
+}
+.fb-card__name {
+  font-weight: 600;
+  color: var(--foreground);
+}
