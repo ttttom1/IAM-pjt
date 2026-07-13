@@ -393,6 +393,24 @@ function initFeedback() {
   fbRender();
 }
 
+/* --------------------------------------------
+   11. 첫 진입 인사 모달
+-------------------------------------------- */
+function initWelcome() {
+  const dlg = $('#welcome');
+  if (!dlg) return;
+
+  const close = () => dlg.close();
+  $('#welcome-close').addEventListener('click', close);
+  $('#welcome-start').addEventListener('click', close);
+  dlg.addEventListener('click', (e) => {
+    if (e.target === dlg) close();
+  });
+
+  // 페이지가 자리를 잡은 뒤 부드럽게 노출
+  requestAnimationFrame(() => dlg.showModal());
+}
+
 
 initTheme();
 initProgress();
@@ -406,3 +424,4 @@ initFeedback();
 initModal();
 initReveal();
 render();
+initWelcome();

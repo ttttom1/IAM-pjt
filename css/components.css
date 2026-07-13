@@ -289,6 +289,10 @@
   background: transparent;
   max-width: 32rem;
   width: calc(100% - 2rem);
+  /* reset의 전역 margin:0 을 덮어 <dialog>를 정중앙으로 */
+  margin: auto;
+  position: fixed;
+  inset: 0;
 }
 .modal::backdrop {
   background: oklch(0 0 0 / 45%);
@@ -463,7 +467,7 @@
 .trap {
   padding: var(--space-4);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--destructive);
+  border-left: 3px solid var(--blue-3);
   border-radius: var(--radius-md);
   background: var(--card);
 }
@@ -646,4 +650,64 @@
 .fb-card__name {
   font-weight: 600;
   color: var(--foreground);
+}
+
+/* ============================================
+   Welcome — 첫 진입 인사 모달
+   ============================================ */
+.welcome__text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--foreground);
+  margin-bottom: var(--space-6);
+}
+.welcome__start {
+  width: 100%;
+  padding: var(--space-3);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background: var(--blue-3);
+  color: var(--primary-foreground);
+  border-radius: var(--radius-md);
+  transition: opacity 0.15s ease;
+}
+.welcome__start:hover {
+  opacity: 0.9;
+}
+
+/* ============================================
+   Cheer — 1년 응원 배너
+   ============================================ */
+.cheer {
+  padding-block: var(--space-20);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.cheer__lead {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+  margin-bottom: var(--space-2);
+}
+.cheer__main {
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--blue-3);
+  margin-bottom: var(--space-4);
+}
+.cheer__sub {
+  max-width: 32rem;
+  margin-inline: auto;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+}
+.hl {
+  background: var(--blue-3);
+  color: var(--primary-foreground);
+  padding: 0 0.1em;
+  border-radius: 4px;
 }

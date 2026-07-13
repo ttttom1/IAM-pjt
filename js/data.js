@@ -323,8 +323,88 @@ const RESOURCES = [
     warning: '',
     url: '',
   },
+  {
+    id: 46, title: '개발자 유미 (Developer Yummi)', author: '',
+    type: '유튜브', stage: 'jpa', timing: 'SOON', cost: '무료',
+    takeaway: '백엔드 개발자가 자바·스프링·JPA를 강의형으로 차근차근 짚어준다.',
+    forWhom: '강의 사이사이 개념을 짧게 보강하고 싶은 사람',
+    warning: '',
+    url: 'https://www.youtube.com/@xxxjjhhh',
+  },
+  {
+    id: 47, title: '코딩하는 기술사', author: '',
+    type: '유튜브', stage: 'design', timing: 'LATER', cost: '무료',
+    takeaway: '20년 실무 아키텍트의 설계·프로젝트 관리·커리어 관점. 개발 너머 시야를 넓힌다.',
+    forWhom: '코드 위의 설계·아키텍처가 궁금해진 사람',
+    warning: '',
+    url: '',
+  },
+  {
+    id: 48, title: '포프TV (김포프)', author: '김포프',
+    type: '유튜브', stage: 'design', timing: 'NOW', cost: '무료',
+    takeaway: '탑 엔지니어로 오래 살아남는 법. 기술보다 개발자로서의 태도·성장에 대한 이야기.',
+    forWhom: '커리어 초반에 방향과 마인드를 잡고 싶은 사람',
+    warning: '기술 강의는 아니다. 태도·커리어 관점으로 봐라.',
+    url: 'https://www.youtube.com/c/PopeTV',
+  },
+  {
+    id: 49, title: '저세상 개발자', author: '',
+    type: '유튜브', stage: 'design', timing: 'LATER', cost: '무료',
+    takeaway: '현업 개발 이야기·실무 토크. 라이브로 실제 개발자의 고민을 듣는다.',
+    forWhom: '현업 분위기와 실무 감각을 엿보고 싶은 사람',
+    warning: '',
+    url: '',
+  },
+  {
+    id: 52, title: '개발자 플레이북', author: '',
+    type: '유튜브', stage: 'design', timing: 'SOON', cost: '무료',
+    takeaway: '개발 커리어·성장 전략을 정리해주는 채널. 무엇을 어떤 순서로 준비할지.',
+    forWhom: '취준 로드맵을 잡고 싶은 사람',
+    warning: '',
+    url: '',
+  },
+  {
+    id: 53, title: '2분 코딩', author: '',
+    type: '유튜브', stage: 'http', timing: 'NOW', cost: '무료',
+    takeaway: '개념 하나를 짧게 끊어 설명. 애매하게 아는 걸 빠르게 정리할 때.',
+    forWhom: '긴 영상 볼 시간이 없을 때',
+    warning: '',
+    url: '',
+  },
+  {
+    id: 54, title: '판교 뚜벅초', author: '',
+    type: '유튜브', stage: 'design', timing: 'LATER', cost: '무료',
+    takeaway: 'IT 업계·취업·이직 현실을 현직자 관점에서 짚어준다.',
+    forWhom: '업계 분위기와 커리어 현실이 궁금한 사람',
+    warning: '',
+    url: '',
+  },
+  {
+    id: 55, title: '코딩하는 거니 (딩코딩코)', author: '',
+    type: '유튜브', stage: 'http', timing: 'NOW', cost: '무료',
+    takeaway: '언어 문법을 이해하기 쉽게 풀어준다. 기초 문법을 다질 때.',
+    forWhom: '자바·프로그래밍 문법이 아직 낯선 사람',
+    warning: '',
+    url: '',
+  },
+  {
+    id: 56, title: '양실장 (바이브코딩대학)', author: '',
+    type: '유튜브', stage: 'ai', timing: 'SOON', cost: '무료',
+    takeaway: 'AI로 빠르게 만들어보는 바이브코딩 흐름. 도구를 붙여 결과물부터 내본다.',
+    forWhom: 'AI 코딩 도구를 실제 개발에 붙여보고 싶은 사람',
+    warning: '속도 위주다. 왜 되는지는 정식 자료로 따로 채워라.',
+    url: '',
+  },
 
   /* ---------- 유튜브 · AI ---------- */
+  {
+    id: 57, title: '실뱉개발자', author: '',
+    type: '유튜브', stage: 'ai', timing: 'LATER', cost: '무료',
+    takeaway: 'AI·개발 실무 이야기를 현직자 관점에서 풀어준다.',
+    forWhom: 'AI를 실제 개발에 어떻게 쓰는지 현실 감각이 궁금한 사람',
+    warning: '',
+    url: '',
+  },
   {
     id: 50, title: '노정석 (AI·스타트업)', author: '노정석',
     type: '유튜브', stage: 'ai', timing: 'LATER', cost: '무료',
@@ -385,31 +465,23 @@ const RESOURCES = [
   },
 ];
 
-/** 시간을 낭비한 것들. 이 페이지에서 제일 강한 섹션. */
+/** 실제로 시간을 버린 것들. "하지 말 것"이 아니라 "이렇게 하다 손해 봤다". */
 const TRAPS = [
   {
     title: '기술 이름부터 모으기',
-    detail: 'Kafka·Redis·k8s를 초반에 리스트로 모았지만, 문제를 안 겪어서 하나도 안 남았다. 순서가 먼저다.',
+    detail: 'Kafka·Redis·k8s를 초반에 리스트로만 모았지만, 문제를 안 겪어서 하나도 안 남았다. 기본기를 빠르게 훑고 프로젝트에 들어가서, 필요할 때 AI·책·강의로 그때그때 채우는 게 맞다.',
   },
   {
-    title: '벽돌책 1페이지부터 완독',
-    detail: 'Real MySQL·DDIA를 앞에서부터 읽다가 지쳐서 덮었다. 필요한 장만 발췌해 읽는 게 훨씬 오래 간다.',
-  },
-  {
-    title: '@Transactional 붙이면 끝이라는 착각',
-    detail: 'S3 copy 성공 후 DB insert 실패처럼, 외부 시스템은 트랜잭션에 안 묶인다. 이걸 늦게 알았다.',
-  },
-  {
-    title: '성능 최적화 강의를 문제 없이 보기',
-    detail: 'N+1을 겪기 전에 활용2를 봐서 안 남았다. 느려본 다음에 봐야 몸에 붙는다.',
+    title: '책을 중간에 덮은 것',
+    detail: '벽돌책을 완벽히 하려다 지쳐 덮곤 했다. 한 권을 정하면 너무 오래 매이지 말고, 꾸준히 끝까지 읽어내는 편이 낫더라.',
   },
 ];
 
 /** 자료보다 중요한, 공부하는 방식에 대한 제안 (선택). */
 const ADVICE = [
   {
-    title: '프로젝트는 작게 잡아라',
-    detail: '도메인이 적고 화면 수가 많지 않은 걸 골라라. 핫딜 상품 결제 상황, 수상 구조 AI 에이전트처럼 좁고 깊은 주제가 성장이 빠르다. 넓히면 관리에 시간을 다 뺏긴다.',
+    title: 'task 하나에 집중한 작은 프로젝트로 시작하라',
+    detail: '커뮤니티 같은 "서비스 하나"를 통째로 만들기보다, 도메인이 적고 하나의 task에 집중한 프로젝트가 하드 스킬을 기르기 좋다. 핫딜 상품 결제 상황, 수상 구조 AI 에이전트처럼 좁고 깊은 주제를 골라라.',
   },
   {
     title: '자바 문법은 빠르게 띄우고 넘어가라',
@@ -422,5 +494,9 @@ const ADVICE = [
   {
     title: 'AI는 많이 써보는 게 공부다',
     detail: '국내외 공모전·기업 과제테스트를 풀고, 수상작 코드와 오픈소스를 뜯어봐라. AI와 함께 모르는 걸 그때그때 찾는 습관이 핵심이다.',
+  },
+  {
+    title: 'AI 구독하고 세컨드 브레인을 쌓아라',
+    detail: 'AI 하나를 구독해 두고, 공부한 것과 겪은 문제를 매일 기록해 나만의 세컨드 브레인을 만들어라. 쌓아두면 나중에 이력서 쓸 때 소재가 이미 정리돼 있어 편하고, 그 과정 자체도 AI로 점점 자동화할 수 있다.',
   },
 ];
